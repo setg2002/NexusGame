@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
+  m_Name: HydroVegBrush
+  m_EditorClassIdentifier: 
+  m_Cells:
+  - m_Tile: {fileID: 0}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Pivot: {x: 0, y: 0, z: 0}
+  m_Prefabs:
+  - {fileID: 3444669832766325254, guid: 10acda0eca44c174b9f788fe8066a7ad, type: 3}
+  - {fileID: 1191812538612102716, guid: 1b24fa9356fbd5247a146712cb4e6903, type: 3}
+  - {fileID: 9093087651671283564, guid: 0a5c824598515394eb1ee4208b893484, type: 3}
+  - {fileID: 1410004442756618893, guid: 9980c9a88b342b34a8769d1ec2e568fb, type: 3}
+  - {fileID: 274373111091379299, guid: 41cbbf9c4391d5c40bfa6373cc1f4d74, type: 3}
+  - {fileID: 5721454364797370884, guid: 61c8e19ca84535c48bec23c6409b4806, type: 3}
+  m_PerlinScale: 0.5
+  m_Z: 0

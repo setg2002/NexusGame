@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+<<<<<<< .mine
+guid: ad9b302def4d49c41bb4f9a42dfa6da4
+||||||| .r451
+guid: dc110a723eb5e8f488f158c831ccbeb1
+=======
+guid: ca429780455982c499637e9249b254e4
+>>>>>>> .r452
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Astrolab
+  fontNames:
+  - Astrolab
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: dc110a723eb5e8f488f158c831ccbeb1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

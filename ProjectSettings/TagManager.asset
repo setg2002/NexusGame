@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PickUp
+  - AudioLog
+  - Terminal
+  - AudioTrigger
+  - Locked
+  - unpowered
+  - unpoweredFire
+  - poweredFire
+  - Quarentine
+  - powered
+  - Floor
+  - BlackBox
+  - Alien
+  - HoloDeck
+  - Bound
+  - HeavyItm
+  - BoundLrg
+  - Captn
+  - Minimap
+  - ImpossibleJump
+  - Achievement
+  - Elevator
+  - TextLog
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - TileLightBlocker
+  - Minimap
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackgroundP
+    uniqueID: 1664927447
+    locked: 0
+  - name: Background
+    uniqueID: 1073235539
+    locked: 0
+  - name: Midground
+    uniqueID: 3587019633
+    locked: 0
+  - name: Foreground
+    uniqueID: 1279946667
+    locked: 0
