@@ -36,6 +36,7 @@ AudioMixerGroupController:
   m_Children: []
   m_Volume: 2f8e9233cf758e240afc1c2b46d17f9b
   m_Pitch: 4c08ddcb8d915f646947f74c51835053
+  m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
   m_UserColorIndex: 0

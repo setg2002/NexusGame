@@ -209,7 +209,6 @@ public class PauseMenu : MonoBehaviour
     {
         EValue = float.Parse(volume);
 
-
         EValue -= 80;
         VolumeSlider.GetComponent<Slider>().value = EValue;
         SetVolume(EValue);
@@ -225,7 +224,7 @@ public class PauseMenu : MonoBehaviour
 
         volumeControl.SetFloat("MasterVolume", volume);
 
-        VolumeEditor.GetComponentInChildren<Text>().text = "" +Vvalue;
+        VolumeEditor.GetComponentInChildren<Text>().text = "" + Vvalue;
 
 
         if (Vvalue % 10 == 0)
@@ -234,7 +233,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            VolumeValueText.GetComponent<Text>().text = "" +Vvalue;
+            VolumeValueText.GetComponent<Text>().text = "" + Vvalue;
         }
     }
 }

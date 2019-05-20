@@ -60,6 +60,7 @@ public class DoorControls : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && gameObject.CompareTag("powered"))
         {
+            source.Stop();
             source.PlayOneShot(DoorOpen, 0.5f);
 
             doorOpen = true;
@@ -76,6 +77,7 @@ public class DoorControls : MonoBehaviour
     {
         if(doorOpen)
         {
+            source.Stop();
             source.PlayOneShot(DoorClose, 0.5f);
 
             doorOpen = false;

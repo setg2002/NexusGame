@@ -12,13 +12,11 @@ public class Win : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<PlayerCharacterController>().HasBlackBox == true)
             {
-                File.Delete(Application.persistentDataPath + "/savedata.dat");
                 SceneManager.LoadScene("Good Credits");
                 collision.gameObject.GetComponent<AchievementManager>().AchievementGet(AchievementManager.Achievements.GoodEnd);
             }
             else
             {
-                File.Delete(Application.persistentDataPath + "/savedata.dat");
                 SceneManager.LoadScene("Bad Credits");
                 collision.gameObject.GetComponent<AchievementManager>().AchievementGet(AchievementManager.Achievements.BadEnd);
             }
