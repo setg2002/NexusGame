@@ -12,11 +12,13 @@ public class Translator : MonoBehaviour
 {
     // VARIABLES
     public Text text;
-    //public List<string> words = new List<string>();
     public string result = "";
     public float delay = 0.1f;
 
     private bool CanShowText = true;
+
+    // True when terminal is not showing
+    public bool turnOffTerminal;
 
     string currentText;
     int offset;
@@ -56,8 +58,9 @@ public class Translator : MonoBehaviour
                 text.text = currentText;
                 yield return new WaitForSeconds(delay);
             }
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             CanShowText = true;
+            turnOffTerminal = true;
         }
     }
    

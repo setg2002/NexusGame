@@ -437,14 +437,6 @@ public class PlayerCharacterController : MonoBehaviour
     // pickup text while the player was standing over an audio log
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("AudioLog"))
-        {
-            GameObject.Find("Canvas").GetComponent<UIManager>().displayAudioLog();
-            LogNum = other.GetComponent<AudioLog>().LogNum;
-            bAudioLog = true;
-            AudioLog = other.gameObject;
-        }
-
         // Set current room for boundary manager
         if (other.CompareTag("Bound") || other.CompareTag("BoundLrg"))
         {

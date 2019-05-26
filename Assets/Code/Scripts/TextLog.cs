@@ -13,6 +13,9 @@ public class TextLog : MonoBehaviour
     public GameObject Textbox;
     public GameObject ComBox;
 
+    private float delay;
+
+
     private void Awake()
     {
         PlayerData data = SaveSystem.LoadPlayer();
@@ -42,11 +45,10 @@ public class TextLog : MonoBehaviour
     {
         if (text.Length > 0)
         {
+            Textbox.GetComponent<Translator>().turnOffTerminal = false;
             ComBox.SetActive(true);
             yield return new WaitForSeconds(1);
             Textbox.GetComponent<Translator>().SplitAndEncrypt(text);
-            yield return new WaitForSeconds(23);
-            ComBox.SetActive(false);
         }
     }
 
@@ -60,6 +62,11 @@ public class TextLog : MonoBehaviour
         else
         {
             Active = false;
+        }
+
+        if(Textbox.GetComponent<Translator>().turnOffTerminal == true)
+        {
+            ComBox.SetActive(false);
         }
     }
 
