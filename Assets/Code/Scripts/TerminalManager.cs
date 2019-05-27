@@ -6,6 +6,8 @@ public class TerminalManager : MonoBehaviour
 {
     public GameObject Player;
 
+    public GameObject[] OldDoors;
+
     public GameObject requiredItem;
     public GameObject Textbox;
     public GameObject ComBox;
@@ -46,6 +48,14 @@ public class TerminalManager : MonoBehaviour
         else { requiresObject = false; }
     }
 
+    private void Update()
+    {
+        if (Textbox.GetComponent<Translator>().turnOffTerminal == true)
+        {
+            ComBox.SetActive(false);
+        }
+    }
+
     // Called from PlayerCharacterController.cs whe the player tries to interact with a terminal
     public void activateTerminal(string currentItem)
     {
@@ -62,6 +72,7 @@ public class TerminalManager : MonoBehaviour
                 if (ThisTerminalLevel == TerminalLevel.GeneratorActivation) { TryPower(); }
 
                 StartCoroutine(ComAppear());
+                AlreadyUsed = true;
             }
 
             // If the player cannot use the terminal, do nothing
@@ -86,7 +97,6 @@ public class TerminalManager : MonoBehaviour
         Player.GetComponent<PlayerCharacterController>().GameStage = 2;
 
         GlobalVariables.Fuse = true;
-        AlreadyUsed = true;
     }
 
     // Turns powered fire doors into powered doors
@@ -115,34 +125,40 @@ public class TerminalManager : MonoBehaviour
         if (GlobalVariables.Fuse == false)
         {
             // Alien says go get fuse
-            text = new string[4] { "Go f", "get f", "the f", "fuse f" };
+            text = new string[1] { "Go replace the fuse in the fuse box f" };
         }
         if (GlobalVariables.Fuse == true)
         {
             Player.GetComponent<PlayerCharacterController>().GameStage = 3;
 
-            text = new string[4] {"Power f", "is f", "now f", "restored f" };
+            gameObject.GetComponent<Animator>().Play("Switch");
+
+            text = new string[1] {"Power is now restored f"};
             ChangeDoors("powered", "unpowered", poweredPrefab);
             ChangeDoors("poweredFire", "unpoweredFire", poweredFirePrefab);
             HolodeckWarningChange(HoloDeckManager.WarningState.Fire);
-            GameObject.Find("BackgroundUP").SetActive(false);
+            if(GameObject.Find("BackgroundUP")) { GameObject.Find("BackgroundUP").SetActive(false); }
         }
     }
 
     // Responsible for updating the doors when a terminal is activated
     private void ChangeDoors(string newTag, string oldTag, GameObject NewPrefab)
     {
-        GameObject[] OldDoors = GameObject.FindGameObjectsWithTag(oldTag);
+        OldDoors = GameObject.FindGameObjectsWithTag(oldTag);
+
         foreach (GameObject item in OldDoors)
         {
             GameObject NewDoor = Instantiate(NewPrefab);
-            if(oldTag == "Quarentine") { NewDoorSpawnOffset = 0; }
+            NewDoor.transform.parent = GameObject.Find("TheAndromeda").transform.Find("Doors");
+            NewDoor.GetComponent<DoorControls>().doorNum = item.GetComponent<DoorControls>().doorNum;
+            
+            if (oldTag == "Quarentine" || oldTag == "unpoweredFire") { NewDoorSpawnOffset = 0; }
             else { NewDoorSpawnOffset = 0.51f; }
-            if(newTag == "powered") { NewDoor.transform.position = item.transform.position + new Vector3(0, NewDoorSpawnOffset, 0); }
-            else { NewDoor.transform.position = item.transform.position; }
-            NewDoor.tag = newTag;
+
+            NewDoor.transform.position = item.transform.position + new Vector3(0, NewDoorSpawnOffset, 0);
+            NewDoor.GetComponent<DoorControls>().ClosedPos.y = item.transform.position.y;
+
             Destroy(item);
-            AlreadyUsed = true;
         }
     }
 
@@ -162,13 +178,15 @@ public class TerminalManager : MonoBehaviour
     {
         if(text.Length > 0)
         {
+            Textbox.GetComponent<Translator>().turnOffTerminal = false;
             source.Stop();
+            if(Music)
+            {
+                source.PlayOneShot(Music, 1f);
+            }
             ComBox.SetActive(true);
-            source.PlayOneShot(Music, 1f);
             yield return new WaitForSeconds(3);
             Textbox.GetComponent<Translator>().SplitAndEncrypt(text);
-            yield return new WaitForSeconds(20);
-            ComBox.SetActive(false);
         }
     }
 }

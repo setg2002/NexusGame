@@ -13,7 +13,7 @@ public class DoorControls : MonoBehaviour
     public int doorNum;
 
     // The position the door should be when closed for lerp
-    Vector3 ClosedPos;
+    public Vector3 ClosedPos;
 
     // Collider that adds collision to the door and is turned off when the door opens
     public BoxCollider2D OpenCollider;

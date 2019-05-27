@@ -45,7 +45,10 @@ public class AudioManager : MonoBehaviour
 
     public void TriggerSound(AudioClip TriggerSound)
     {
-        source.PlayOneShot(TriggerSound, volume);
+        if(TriggerSound)
+        {
+            source.PlayOneShot(TriggerSound, volume);
+        }
     }
 
 }

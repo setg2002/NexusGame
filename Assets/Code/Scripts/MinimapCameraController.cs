@@ -8,6 +8,10 @@ public class MinimapCameraController : MonoBehaviour
 
     public Camera camera;
 
+    private bool reactivateAudio = false;
+    private bool reactivateItem = false;
+    private bool reactivateUse = false;
+
     // True when the map is fullscreen
     private bool MapLarge;
 
@@ -43,11 +47,43 @@ public class MinimapCameraController : MonoBehaviour
             {
                 toZoom = 26;
                 MapLarge = false;
+
+                if (reactivateAudio)
+                {
+                    GameObject.Find("Canvas").GetComponent<UIManager>().audioText.gameObject.SetActive(true);
+                    reactivateAudio = false;
+                }
+                if (reactivateItem)
+                {
+                    GameObject.Find("Canvas").GetComponent<UIManager>().itemsText.gameObject.SetActive(true);
+                    reactivateItem = false;
+                }
+                if (reactivateUse)
+                {
+                    GameObject.Find("Canvas").GetComponent<UIManager>().useText.gameObject.SetActive(true);
+                    reactivateUse = false;
+                }
             }
             else if(MapLarge == false)
             {
                 toZoom = 50;
                 MapLarge = true;
+
+                if (GameObject.Find("Canvas").GetComponent<UIManager>().audioText.gameObject.activeSelf)
+                {
+                    GameObject.Find("Canvas").GetComponent<UIManager>().audioText.gameObject.SetActive(false);
+                    reactivateAudio = true;
+                }
+                if (GameObject.Find("Canvas").GetComponent<UIManager>().useText.gameObject.activeSelf)
+                {
+                    GameObject.Find("Canvas").GetComponent<UIManager>().useText.gameObject.SetActive(false);
+                    reactivateUse = true;
+                }
+                if (GameObject.Find("Canvas").GetComponent<UIManager>().itemsText.gameObject.activeSelf)
+                {
+                    GameObject.Find("Canvas").GetComponent<UIManager>().itemsText.gameObject.SetActive(false);
+                    reactivateItem = true;
+                }
             }
         }
 

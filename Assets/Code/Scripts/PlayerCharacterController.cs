@@ -470,8 +470,9 @@ public class PlayerCharacterController : MonoBehaviour
             // For interacting with terminals
             if (bTerminal)
                 {
-                if ((currentItem == Terminal.GetComponent<TerminalManager>().requiredItem.name) || ((currentItem == null) && (Terminal.GetComponent<TerminalManager>().requiresObject == false)))
+                if (Terminal.GetComponent<TerminalManager>().requiresObject && currentItem == Terminal.GetComponent<TerminalManager>().requiredItem.name)
                 {
+                    GameObject.Find("Canvas").transform.Find("CommunicationBox").GetComponentInChildren<Translator>().text.text = "";
                     if (currentItemGO)
                     {
                         currentItemGO.SetActive(false);
@@ -482,6 +483,13 @@ public class PlayerCharacterController : MonoBehaviour
                     GameObject.Find("Canvas").GetComponent<UIManager>().updateItem(currentItem);
                     GameObject.Find("Canvas").GetComponent<UIManager>().hideRequiredItem();
                     GameObject.Find("AudioManager").GetComponent<AudioManager>().TriggerSound(TriggerSound);
+                }
+                else if (currentItem == null && Terminal.GetComponent<TerminalManager>().requiresObject == false)
+                {
+                    GameObject.Find("Canvas").transform.Find("CommunicationBox").GetComponentInChildren<Translator>().text.text = "";
+                    Terminal.GetComponent<TerminalManager>().activateTerminal(null);
+                    GameObject.Find("Canvas").GetComponent<UIManager>().updateItem(null);
+                    GameObject.Find("Canvas").GetComponent<UIManager>().hideRequiredItem();
                 }
             }
 

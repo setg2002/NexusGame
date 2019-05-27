@@ -54,7 +54,7 @@ public class PlayerData
             itemActive[g] = items[x].Active;
         }
 
-        MMRoomColor = new bool[rooms.Length];
+        MMRoomColor = new bool[19];
         for (int y = 0; y < rooms.Length; y++)
         {
             r = rooms[y].roomNum;

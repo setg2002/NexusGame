@@ -7,8 +7,8 @@ public class MinimapObject : MonoBehaviour
     // True when the map is fullscreen
     private bool MapLarge;
 
-    private float toX;
-    private float toY;
+    public float toX;
+    public float toY;
 
     private float toScale;
 
@@ -18,8 +18,8 @@ public class MinimapObject : MonoBehaviour
     {
         MapLarge = false;
         toScale = 1;
-        toX = 780;
-        toY = 440;
+        toX = 285;
+        toY = 160;
     }
 
     void Update()
@@ -28,21 +28,21 @@ public class MinimapObject : MonoBehaviour
         {
             if (MapLarge == true)
             {
-                toX = 780;
-                toY = 440;
+                toX = 285;
+                toY = 160;
                 toScale = 1;
                 MapLarge = false;
             }
             else if (MapLarge == false)
             {
-                toX = 470;
-                toY = 275;
+                toX = 0;
+                toY = 0;
                 toScale = 3;
                 MapLarge = true;
             }
         }
 
-        transform.position = new Vector2(Mathf.Lerp(gameObject.transform.position.x, toX, 2 * Time.deltaTime), Mathf.Lerp(gameObject.transform.position.y, toY, 2 * Time.deltaTime));
+        GetComponent<RectTransform>().localPosition = new Vector2(Mathf.Lerp(gameObject.transform.localPosition.x, toX, 2 * Time.deltaTime), Mathf.Lerp(gameObject.transform.localPosition.y, toY, 2 * Time.deltaTime));
         transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, toScale, 2 * Time.deltaTime), Mathf.Lerp(transform.localScale.y, toScale, 2 * Time.deltaTime), 1);
     }
 }

@@ -35,6 +35,6 @@ MonoBehaviour:
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Prefabs:
-  - {fileID: 4803678328878048279, guid: 912be06eb615d704688ed4bb76e508a8, type: 3}
+  - {fileID: 827351758006896367, guid: c9ba7f9dd95da8b4baf477c009b0a1c5, type: 3}
   m_PerlinScale: 0.5
   m_Z: 0
