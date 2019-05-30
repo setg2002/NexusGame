@@ -7,6 +7,12 @@ public class AchievementManager : MonoBehaviour
 {
     public enum Achievements { AllLogs, ImpossibleJump, GoodEnd, BadEnd, AllEndings, AllDoors };
 
+    public GameObject achievementPopup;
+    public GameObject achievementImg;
+    public GameObject achievementTxt;
+    // true when achievement is showing
+    private bool achievmentFade;
+
     public List<int> CompletedAchievements;
 
     public List<int> Doors;
@@ -35,6 +41,8 @@ public class AchievementManager : MonoBehaviour
 
         doorsInScene = GameObject.Find("TheAndromeda").transform.Find("Doors").transform.childCount;
 
+        achievmentFade = false;
+
         //Debug.Log();
     }
 
@@ -50,6 +58,18 @@ public class AchievementManager : MonoBehaviour
             AchievementGet(Achievements.AllDoors);
         }
 
+        if(achievmentFade == true)
+        {
+            achievementPopup.GetComponent<Image>().color = new Vector4(255, 255, 255, Mathf.Lerp(0, 255, 2 * Time.deltaTime));
+            achievementTxt.GetComponent<Text>().color = new Vector4(255, 255, 255, Mathf.Lerp(0, 255, 2 * Time.deltaTime));
+            achievementImg.GetComponent<Image>().color = new Vector4(255, 255, 255, Mathf.Lerp(0, 255, 2 * Time.deltaTime));
+        }
+        else
+        {
+            achievementPopup.GetComponent<Image>().color = new Vector4(255, 255, 255, Mathf.Lerp(achievementPopup.GetComponent<Image>().color.a, 0, 2 * Time.deltaTime));
+            achievementTxt.GetComponent<Text>().color = new Vector4(255, 255, 255, Mathf.Lerp(achievementTxt.GetComponent<Text>().color.a, 0, 2 * Time.deltaTime));
+            achievementImg.GetComponent<Image>().color = new Vector4(255, 255, 255, Mathf.Lerp(achievementImg.GetComponent<Image>().color.a, 0, 2 * Time.deltaTime));
+        }
     }
 
     public void AchievementGet(Achievements achievement)
@@ -65,8 +85,18 @@ public class AchievementManager : MonoBehaviour
                 if(achievementUI.GetComponent<Achievement>().thisAchievement == achievement)
                 {
                     achievementUI.GetComponent<Achievement>().locked = false;
+                    StartCoroutine(AchivementPopup(achievementUI.GetComponent<Achievement>().Unlocked, achievementUI.transform.Find("AchievementText (1)").GetComponent<Text>().text));
                 }
             }
         }
+    }
+
+    IEnumerator AchivementPopup(Sprite sprite, string text)
+    {
+        achievementImg.GetComponent<Image>().sprite = sprite;
+        achievementTxt.GetComponent<Text>().text = text.ToString();
+        achievmentFade = true;
+        yield return new WaitForSeconds(4);
+        achievmentFade = false;
     }
 }

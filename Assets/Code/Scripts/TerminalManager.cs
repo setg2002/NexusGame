@@ -65,14 +65,44 @@ public class TerminalManager : MonoBehaviour
             // For if the player can use the terminal it will execute the function according to its level
             if (requiresObject == false || requiredItem.name == currentItem)
             {
-                if (ThisTerminalLevel == TerminalLevel.Tutorial) { UnlockDoor(); }
-                if (ThisTerminalLevel == TerminalLevel.Generator) { PowerDoors(); }
-                if (ThisTerminalLevel == TerminalLevel.Hydroponics) { PowerHydro(); }
-                if (ThisTerminalLevel == TerminalLevel.Weapons) { EndGamePower(); }
-                if (ThisTerminalLevel == TerminalLevel.GeneratorActivation) { TryPower(); }
+                Player = GameObject.Find("Player1");
 
-                StartCoroutine(ComAppear());
-                AlreadyUsed = true;
+                if (ThisTerminalLevel == TerminalLevel.Tutorial)
+                {
+                    UnlockDoor();
+                    StartCoroutine(ComAppear());
+                    AlreadyUsed = true;
+                }
+                if (ThisTerminalLevel == TerminalLevel.Generator)
+                {
+                    PowerDoors();
+                    StartCoroutine(ComAppear());
+                    AlreadyUsed = true;
+                }
+                if (ThisTerminalLevel == TerminalLevel.Weapons)
+                {
+                    EndGamePower();
+                    StartCoroutine(ComAppear());
+                    AlreadyUsed = true;
+                }
+                if (ThisTerminalLevel == TerminalLevel.GeneratorActivation)
+                {
+                    TryPower();
+                    StartCoroutine(ComAppear());
+                    AlreadyUsed = true;
+                }
+                if (ThisTerminalLevel == TerminalLevel.Hydroponics && Player.GetComponent<PlayerCharacterController>().GameStage != 3)
+                {
+                    text = new string[1] { "Power must be restored in order to activate sprinkler system f" };
+                    StartCoroutine(ComAppear());
+                }
+                else if (ThisTerminalLevel == TerminalLevel.Hydroponics && Player.GetComponent<PlayerCharacterController>().GameStage == 3)
+                {
+                    PowerHydro();
+                    text = new string[1] { "Fire sprinklers activated f" };
+                    StartCoroutine(ComAppear());
+                    AlreadyUsed = true;
+                }
             }
 
             // If the player cannot use the terminal, do nothing
@@ -121,7 +151,6 @@ public class TerminalManager : MonoBehaviour
 
     public void TryPower()
     {
-        Player = GameObject.Find("Player1");
         if (GlobalVariables.Fuse == false)
         {
             // Alien says go get fuse
@@ -129,11 +158,12 @@ public class TerminalManager : MonoBehaviour
         }
         if (GlobalVariables.Fuse == true)
         {
+            Player = GameObject.Find("Player1");
             Player.GetComponent<PlayerCharacterController>().GameStage = 3;
 
             gameObject.GetComponent<Animator>().Play("Switch");
 
-            text = new string[1] {"Power is now restored f"};
+            text = new string[1] { "Power is now restored f" };
             ChangeDoors("powered", "unpowered", poweredPrefab);
             ChangeDoors("poweredFire", "unpoweredFire", poweredFirePrefab);
             HolodeckWarningChange(HoloDeckManager.WarningState.Fire);

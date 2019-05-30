@@ -41,6 +41,28 @@ public class MinimapCameraController : MonoBehaviour
     {
         transform.position = new Vector3(currentBoundary.position.x, currentBoundary.position.y, -8.29f);
 
+        if(MapLarge == true)
+        {
+            if (GameObject.Find("Canvas").GetComponent<UIManager>().audioText.gameObject.activeSelf)
+            {
+                GameObject.Find("Canvas").GetComponent<UIManager>().audioText.gameObject.SetActive(false);
+                reactivateAudio = true;
+            }
+            else { reactivateAudio = false; }
+            if (GameObject.Find("Canvas").GetComponent<UIManager>().useText.gameObject.activeSelf)
+            {
+                GameObject.Find("Canvas").GetComponent<UIManager>().useText.gameObject.SetActive(false);
+                reactivateUse = true;
+            }
+            else { reactivateUse = false; }
+            if (GameObject.Find("Canvas").GetComponent<UIManager>().itemsText.gameObject.activeSelf)
+            {
+                GameObject.Find("Canvas").GetComponent<UIManager>().itemsText.gameObject.SetActive(false);
+                reactivateItem = true;
+            }
+            else { reactivateItem = false; }
+        }
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             if(MapLarge == true)
@@ -87,7 +109,7 @@ public class MinimapCameraController : MonoBehaviour
             }
         }
 
-        camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, toZoom, 2 * Time.deltaTime);
+        camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, toZoom, 8 * Time.deltaTime);
     }
 
     public void UpdateBoundary(GameObject newBoundary, GameObject oldBoundary)

@@ -42,7 +42,7 @@ public class MinimapObject : MonoBehaviour
             }
         }
 
-        GetComponent<RectTransform>().localPosition = new Vector2(Mathf.Lerp(gameObject.transform.localPosition.x, toX, 2 * Time.deltaTime), Mathf.Lerp(gameObject.transform.localPosition.y, toY, 2 * Time.deltaTime));
-        transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, toScale, 2 * Time.deltaTime), Mathf.Lerp(transform.localScale.y, toScale, 2 * Time.deltaTime), 1);
+        GetComponent<RectTransform>().localPosition = new Vector2(Mathf.Lerp(gameObject.transform.localPosition.x, toX, 8 * Time.deltaTime), Mathf.Lerp(gameObject.transform.localPosition.y, toY, 8 * Time.deltaTime));
+        transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, toScale, 8 * Time.deltaTime), Mathf.Lerp(transform.localScale.y, toScale, 8 * Time.deltaTime), 1);
     }
 }

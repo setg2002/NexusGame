@@ -468,8 +468,8 @@ public class PlayerCharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // For interacting with terminals
-            if (bTerminal)
-                {
+            if (bTerminal && (GameObject.Find("Canvas").transform.Find("CommunicationBox").gameObject.activeSelf == false))
+            {
                 if (Terminal.GetComponent<TerminalManager>().requiresObject && currentItem == Terminal.GetComponent<TerminalManager>().requiredItem.name)
                 {
                     GameObject.Find("Canvas").transform.Find("CommunicationBox").GetComponentInChildren<Translator>().text.text = "";
