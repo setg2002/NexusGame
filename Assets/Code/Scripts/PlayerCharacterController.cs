@@ -103,6 +103,9 @@ public class PlayerCharacterController : MonoBehaviour
     // Sets values for player at start of game
     void Awake()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         PlayerData data = SaveSystem.LoadPlayer();
 
         if (data == null)
